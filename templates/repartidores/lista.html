@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Repartidores — Sistema Delivery{% endblock %}
+
+{% block content %}
+<h1>Repartidores</h1>
+
+<form method="get" class="filtros">
+    <input type="text" name="buscar" placeholder="Buscar por nombre, DNI o teléfono"
+           value="{{ filtros.buscar }}">
+    <select name="estado">
+        <option value="">— Estado —</option>
+        {% for valor, etiqueta in estados %}
+            <option value="{{ valor }}" {% if filtros.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+        {% endfor %}
+    </select>
+    <select name="vehiculo">
+        <option value="">— Vehículo —</option>
+        {% for valor, etiqueta in vehiculos %}
+            <option value="{{ valor }}" {% if filtros.vehiculo == valor %}selected{% endif %}>{{ etiqueta }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filtrar</button>
+    <a href="{% url 'repartidores:lista' %}">Limpiar</a>
+</form>
+
+{% if repartidores %}
+<table class="tabla">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>DNI</th>
+        <th>Teléfono</th>
+        <th>Vehículo</th>
+        <th>Zona</th>
+        <th>Estado</th>
+        <th>Calif.</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for repartidor in repartidores %}
+    <tr>
+        <td><a href="{% url 'repartidores:detalle' repartidor.id %}">{{ repartidor.nombre }}</a></td>
+        <td>{{ repartidor.dni }}</td>
+        <td>{{ repartidor.telefono }}</td>
+        <td>{{ repartidor.get_vehiculo_display }}</td>
+        <td>{{ repartidor.zona|default:'—' }}</td>
+        <td><span class="badge estado-{{ repartidor.estado }}">{{ repartidor.get_estado_display }}</span></td>
+        <td>{{ repartidor.calificacion }}</td>
+        <td>
+            <a href="{% url 'repartidores:editar' repartidor.id %}">Editar</a>
+            <a href="{% url 'repartidores:eliminar' repartidor.id %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="vacio">No hay repartidores que coincidan con los filtros.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+:root {
+    --primario: #e8590c;
+    --oscuro: #212529;
+    --gris: #f1f3f5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--oscuro);
+    background: var(--gris);
+}
+
+.site-header { background: var(--oscuro); padding: 0.6rem 1rem; }
+.navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
+.brand { color: #fff; font-weight: bold; text-decoration: none; font-size: 1.1rem; }
+.nav-links a { color: #ced4da; text-decoration: none; margin-left: 1rem; }
+.nav-links a:hover { color: #fff; }
+
+.container { max-width: 1000px; margin: 1.5rem auto; padding: 0 1rem; min-height: 60vh; }
+.site-footer { text-align: center; color: #868e96; padding: 1rem; font-size: 0.85rem; }
+
+h1 { color: var(--primario); }
+
+/* Tabla */
+.tabla { width: 100%; border-collapse: collapse; background: #fff; }
+.tabla th, .tabla td { padding: 0.55rem 0.75rem; border-bottom: 1px solid #dee2e6; text-align: left; }
+.tabla thead th { background: var(--oscuro); color: #fff; }
+.tabla tbody tr:hover { background: #fff4e6; }
+
+/* Formularios */
+.filtros { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.filtros input, .filtros select, .formulario input, .formulario select {
+    padding: 0.45rem 0.6rem; border: 1px solid #ced4da; border-radius: 4px;
+}
+.formulario .campo { margin-bottom: 0.9rem; display: flex; flex-direction: column; max-width: 420px; }
+.formulario label { font-weight: 600; margin-bottom: 0.25rem; }
+.help { color: #868e96; }
+.error { color: #c92a2a; font-size: 0.85rem; }
+
+/* Botones */
+button, .btn {
+    background: var(--primario); color: #fff; border: none; border-radius: 4px;
+    padding: 0.5rem 1rem; cursor: pointer; text-decoration: none; display: inline-block;
+}
+.btn-danger { background: #c92a2a; }
+
+/* Mensajes */
+.alert { padding: 0.7rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
+.alert-success { background: #d3f9d8; color: #2b8a3e; }
+.alert-error { background: #ffe3e3; color: #c92a2a; }
+
+/* Badges de estado */
+.badge { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.8rem; color: #fff; }
+.estado-disponible { background: #2b8a3e; }
+.estado-en_pedido { background: #e8590c; }
+.estado-descanso { background: #0b7285; }
+.estado-inactivo { background: #868e96; }
+
+.vacio { color: #868e96; font-style: italic; }
+.ficha { background: #fff; padding: 1rem 1.5rem; border-radius: 6px; max-width: 480px; }
+.ficha ul { list-style: none; padding: 0; }
+.ficha li { padding: 0.3rem 0; border-bottom: 1px dotted #dee2e6; }
+.cambiar-estado { margin: 1.5rem 0; }
+.advertencia { color: #c92a2a; font-weight: bold; }

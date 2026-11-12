@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar repartidor — Sistema Delivery{% endblock %}
+
+{% block content %}
+<h1>Eliminar repartidor</h1>
+
+<p>¿Seguro que deseas eliminar a <strong>{{ repartidor.nombre }}</strong> (DNI {{ repartidor.dni }})?</p>
+<p class="advertencia">Esta acción no se puede deshacer.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'repartidores:detalle' repartidor.id %}">Cancelar</a>
+</form>
+{% endblock %}

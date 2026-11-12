@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ repartidor.nombre }} — Sistema Delivery{% endblock %}
+
+{% block content %}
+<h1>{{ repartidor.nombre }}</h1>
+<p><span class="badge estado-{{ repartidor.estado }}">{{ repartidor.get_estado_display }}</span></p>
+
+<div class="ficha">
+    <ul>
+        <li><strong>DNI:</strong> {{ repartidor.dni }}</li>
+        <li><strong>Teléfono:</strong> {{ repartidor.telefono }}</li>
+        <li><strong>Email:</strong> {{ repartidor.email|default:'—' }}</li>
+        <li><strong>Vehículo:</strong> {{ repartidor.get_vehiculo_display }}</li>
+        <li><strong>Placa:</strong> {{ repartidor.placa|default:'—' }}</li>
+        <li><strong>Zona:</strong> {{ repartidor.zona|default:'—' }}</li>
+        <li><strong>Calificación:</strong> {{ repartidor.calificacion }} / 5</li>
+        <li><strong>Entregas completadas:</strong> {{ repartidor.entregas_completadas }}</li>
+        <li><strong>Registrado:</strong> {{ repartidor.fecha_registro|date:'d/m/Y H:i' }}</li>
+    </ul>
+</div>
+
+<div class="cambiar-estado">
+    <h2>Cambiar estado</h2>
+    <form method="post" action="{% url 'repartidores:cambiar_estado' repartidor.id %}">
+        {% csrf_token %}
+        <select name="estado">
+            {% for valor, etiqueta in repartidor.Estado.choices %}
+                <option value="{{ valor }}" {% if repartidor.estado == valor %}selected{% endif %}>{{ etiqueta }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Actualizar</button>
+    </form>
+</div>
+
+<div class="acciones">
+    <a class="btn" href="{% url 'repartidores:editar' repartidor.id %}">Editar</a>
+    <a class="btn btn-danger" href="{% url 'repartidores:eliminar' repartidor.id %}">Eliminar</a>
+    <a href="{% url 'repartidores:lista' %}">← Volver</a>
+</div>
+{% endblock %}

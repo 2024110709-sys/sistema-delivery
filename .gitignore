@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+*.log
+
+# Entorno
+.env
+.venv/
+venv/
+
+# Archivos de usuario
+media/*
+!media/.gitkeep
+docs/evidencias/*.jpg
+docs/evidencias/*.png
+
+# IDE / SO
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
